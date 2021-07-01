@@ -33,7 +33,6 @@ function createOutputOptions(options) {
  */
 const options = {
   input: './src/index.ts',
-  external: ['jest-resolve/build/defaultResolver'],
   output: [
     createOutputOptions({
       file: './dist/index.js',

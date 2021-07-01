@@ -1,16 +1,14 @@
-import resolverForTSJest, { Path, ResolverOptions } from './index.js';
-import defaultResolver from 'jest-resolve/build/defaultResolver';
+import type { Config } from '@jest/types';
+import resolverForTSJest, { ResolverOptions } from './index.js';
 
-jest.mock('jest-resolve/build/defaultResolver');
-
-const defaultResolverMock = (defaultResolver as unknown) as jest.Mock<
-  Path,
-  [Path, ResolverOptions]
->;
+const defaultResolverMock: jest.Mock<
+  Config.Path,
+  [Config.Path, ResolverOptions]
+> = jest.fn();
 
 const DEFAULT_OPTIONS: ResolverOptions = {
   basedir: '/usr/src/app',
-  defaultResolver,
+  defaultResolver: defaultResolverMock,
 };
 
 describe('resolverForTSJest', () => {
